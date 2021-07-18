@@ -1,54 +1,63 @@
+<script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
 <html>
-  <h2>Configuration</h2>
-  
-  <label>Item</label><input type="text"></input>
-  <label>Minimum</label><input type="text"></input>
-  <label>Maximum</label><input type="text"></input>
-  <button type="button">-</button>
-  <br/>
+    <h2>Configuration</h2>
+    
+    <div class="row">
+        <label>Item</label><input type="text"></input>
+        <label>Minimum</label><input type="text"></input>
+        <label>Maximum</label><input type="text"></input>
+        <button type="button">-</button>
+    </div>
 
-  <label>Item</label><input type="text"></input>
-  <label>Minimum</label><input type="text"></input>
-  <label>Maximum</label><input type="text"></input>
-  <button type="button">-</button>
-  <br/>
+    <button id="addbutton" type="button">+</button>
 
-  <button type="button">+</button>
+    <h2>Output</h2>
+    <textarea rows="20" cols="80">
+        /silent-command
+            local c = game.player.set_personal_logistic_slot
+            c( 45, {max = 5, min = 5, name = "locomotive"})
+            c( 53, {max = 4294967295, min = 1, name = "spidertron"})
+            c( 54, {max = 4294967295, min = 1, name = "spidertron-remote"})
+            c( 62, {max = 50, min = 50, name = "construction-robot"})
+            c( 87, {max = 20, min = 20, name = "cliff-explosives"})
+            c( 91, {max = 100, min = 100, name = "repair-pack"})
+            c( 131, {max = 0, min = 0, name = "pistol"})
+            c( 132, {max = 1, min = 1, name = "submachine-gun"})
+            c( 133, {max = 1, min = 1, name = "rocket-launcher"})
+            c( 143, {max = 200, min = 200, name = "uranium-rounds-magazine"})
+            c( 153, {max = 10, min = 10, name = "atomic-bomb"})
+            c( 171, {max = 4294967295, min = 0, name = "light-armor"})
+            c( 172, {max = 4294967295, min = 0, name = "heavy-armor"})
+            c( 173, {max = 4294967295, min = 0, name = "modular-armor"})
+            c( 174, {max = 4294967295, min = 0, name = "power-armor"})
+            c( 175, {max = 4294967295, min = 0, name = "power-armor-mk2"})
+            c( 181, {max = 4294967295, min = 0, name = "solar-panel-equipment"})
+            c( 182, {max = 4294967295, min = 0, name = "fusion-reactor-equipment"})
+            c( 183, {max = 4294967295, min = 0, name = "battery-equipment"})
+            c( 184, {max = 4294967295, min = 0, name = "battery-mk2-equipment"})
+            c( 185, {max = 4294967295, min = 0, name = "belt-immunity-equipment"})
+            c( 186, {max = 4294967295, min = 0, name = "exoskeleton-equipment"})
+            c( 187, {max = 4294967295, min = 0, name = "personal-roboport-equipment"})
+            c( 188, {max = 4294967295, min = 0, name = "personal-roboport-mk2-equipment"})
+            c( 189, {max = 4294967295, min = 0, name = "night-vision-equipment"})
+            c( 191, {max = 4294967295, min = 0, name = "energy-shield-equipment"})
+            c( 192, {max = 4294967295, min = 0, name = "energy-shield-mk2-equipment"})
+            c( 193, {max = 8, min = 8, name = "personal-laser-defense-equipment"})
+            c( 208, {max = 50, min = 50, name = "radar"})
+            c( 253, {max = 10, min = 10, name = "rocket-fuel"})
+    </textarea>    
 
-  <h2>Output</h2>
-  <textarea rows="20" cols="80">
-    /silent-command
-      local c = game.player.set_personal_logistic_slot
-      c( 45, {max = 5, min = 5, name = "locomotive"})
-      c( 53, {max = 4294967295, min = 1, name = "spidertron"})
-      c( 54, {max = 4294967295, min = 1, name = "spidertron-remote"})
-      c( 62, {max = 50, min = 50, name = "construction-robot"})
-      c( 87, {max = 20, min = 20, name = "cliff-explosives"})
-      c( 91, {max = 100, min = 100, name = "repair-pack"})
-      c( 131, {max = 0, min = 0, name = "pistol"})
-      c( 132, {max = 1, min = 1, name = "submachine-gun"})
-      c( 133, {max = 1, min = 1, name = "rocket-launcher"})
-      c( 143, {max = 200, min = 200, name = "uranium-rounds-magazine"})
-      c( 153, {max = 10, min = 10, name = "atomic-bomb"})
-      c( 171, {max = 4294967295, min = 0, name = "light-armor"})
-      c( 172, {max = 4294967295, min = 0, name = "heavy-armor"})
-      c( 173, {max = 4294967295, min = 0, name = "modular-armor"})
-      c( 174, {max = 4294967295, min = 0, name = "power-armor"})
-      c( 175, {max = 4294967295, min = 0, name = "power-armor-mk2"})
-      c( 181, {max = 4294967295, min = 0, name = "solar-panel-equipment"})
-      c( 182, {max = 4294967295, min = 0, name = "fusion-reactor-equipment"})
-      c( 183, {max = 4294967295, min = 0, name = "battery-equipment"})
-      c( 184, {max = 4294967295, min = 0, name = "battery-mk2-equipment"})
-      c( 185, {max = 4294967295, min = 0, name = "belt-immunity-equipment"})
-      c( 186, {max = 4294967295, min = 0, name = "exoskeleton-equipment"})
-      c( 187, {max = 4294967295, min = 0, name = "personal-roboport-equipment"})
-      c( 188, {max = 4294967295, min = 0, name = "personal-roboport-mk2-equipment"})
-      c( 189, {max = 4294967295, min = 0, name = "night-vision-equipment"})
-      c( 191, {max = 4294967295, min = 0, name = "energy-shield-equipment"})
-      c( 192, {max = 4294967295, min = 0, name = "energy-shield-mk2-equipment"})
-      c( 193, {max = 8, min = 8, name = "personal-laser-defense-equipment"})
-      c( 208, {max = 50, min = 50, name = "radar"})
-      c( 253, {max = 10, min = 10, name = "rocket-fuel"})
-  </textarea>  
+    <script>
+        $('#addbutton').click(function() {
+            rows = $('.row');
+            row = rows.first();
+            row.after(row.clone());
+        });
+    </script>
+
 
 </html>
