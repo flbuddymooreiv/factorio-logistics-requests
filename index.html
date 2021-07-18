@@ -7,16 +7,20 @@
     <h2>Configuration</h2>
     
     <div class="row">
-        <label>Item</label><input type="text"></input>
-        <label>Minimum</label><input type="text"></input>
-        <label>Maximum</label><input type="text"></input>
-        <button type="button">-</button>
+        <label>Item</label><input class="item" type="text"></input>
+        <label>Minimum</label><input class="min" type="text"></input>
+        <label>Maximum</label><input class="max" type="text"></input>
+        <button type="button" class="delbutton">-</button>
     </div>
 
-    <button id="addbutton" type="button">+</button>
+    <div>
+        <button id="addbutton" type="button">+</button>
+    </div>
+
+    <button id="generate" type="button">Generate!</button>
 
     <h2>Output</h2>
-    <textarea rows="20" cols="80">
+    <textarea id="output" rows="20" cols="80">
         /silent-command
             local c = game.player.set_personal_logistic_slot
             c( 45, {max = 5, min = 5, name = "locomotive"})
@@ -54,9 +58,33 @@
     <script>
         $('#addbutton').click(function() {
             rows = $('.row');
-            row = rows.first();
-            row.after(row.clone());
+            var row = rows.first();
+            var newrow = row.clone();
+            delbutton = newrow.first($('.delbutton'))
+            delbutton.off();
+            delbutton.click(function() {
+                newrow.remove();
+            });
+            row.after(newrow);
         });
+
+        $('#generate').click(function() {
+            output = $('#output');
+            var i = 45;
+            l1 = '/silent-command';
+            l2 = 'local c = game.player.set_personal_logistic_slot';
+            output.text(l1 + '\n' + l2 + '\n');
+            $('div.row').each(function(i, e) {
+                x = $(e);
+                item = x.find('input.item').val();
+                min = x.find('input.min').val();
+                max = x.find('input.max').val();
+
+                l = 'c(' + (i+45) + ', {max=' + max + ',min=' + min + ',name=' + item + '})\n';
+                output.append(l);
+            });
+        });
+
     </script>
 
 
