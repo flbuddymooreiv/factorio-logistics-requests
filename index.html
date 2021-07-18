@@ -42,7 +42,7 @@
     <button id="generate" type="button">Generate!</button>
 
     <h2>Output</h2>
-    <textarea id="output" rows="16" cols="80" readonly>
+    <textarea id="output" rows="16" cols="80" >
     </textarea>
 
     <h2>Import/Share</h2>
@@ -76,7 +76,7 @@
             var shareobj = [];
 
             var output = $('#output');
-            var i = 45;
+            var i = 70;
             var l1 = '/silent-command';
             var l2 = 'local c = game.player.set_personal_logistic_slot';
             output.val(l1 + '\n' + l2 + '\n');
@@ -88,8 +88,8 @@
 
                 shareobj.push({item:item, min:min, max:max});
 
-                l = 'c(' + (i+45) + ', {max=' + max + ',min=' + min + ',name=\'' + item + '\'})\n';
-                output.append(l);
+                l = 'c(' + (i+70) + ', {max=' + max + ',min=' + min + ',name=\'' + item + '\'})\n';
+                output.val(output.val() + l);
             });
 
             var json = JSON.stringify(shareobj);
