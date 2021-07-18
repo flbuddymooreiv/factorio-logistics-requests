@@ -13,8 +13,21 @@
         }
     </style>
 
+    <h2>Instructions</h2>
+    Either:<br/>
+    Paste into <b>Import/Share</b> and click <b>Import</b> and then <b>Generate</b><br/>
+    <br/>
+    OR</br>
+    </br>
+    Click the <b>'+'</b> to generate new line items and then click <b>Generate</b> and then Share to your friends so they can modify/tailor their requests.<br/>
+    <br/>
+    Enjoy!<br/>
+
+
     <h2>Configuration</h2>
-    
+
+    <ul><li>max must be 4294967295 for unlimited</li></ul>
+
     <div class="rowproto">
         <label>Item</label><input class="item" type="text"></input>
         <label>Minimum</label><input class="min" type="text"></input>
@@ -30,11 +43,6 @@
 
     <h2>Output</h2>
     <textarea id="output" rows="16" cols="80" readonly>
-        /silent-command
-            local c = game.player.set_personal_logistic_slot
-                c(45, {max=4294967295,min=0,name=personal-roboport-equipment})
-                c(46, {max=5,min=5,name=locomotive})
-                c(47, {max=4294967295,min=0,name=exoskeleton-equipment})
     </textarea>
 
     <h2>Import/Share</h2>
@@ -82,7 +90,7 @@ MTIwLDE1NiwxNDEsMTQxLDE4NywxMCwxMjgsNDgsMTYsNCwyNTUsMjI5LDEwNiw1LDE3LDMxLDE5Niw5
 
                 shareobj.push({item:item, min:min, max:max});
 
-                l = 'c(' + (i+45) + ', {max=' + max + ',min=' + min + ',name=' + item + '})\n';
+                l = 'c(' + (i+45) + ', {max=' + max + ',min=' + min + ',name=\'' + item + '\'})\n';
                 output.append(l);
             });
 
