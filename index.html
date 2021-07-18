@@ -3,10 +3,19 @@
     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
 
+
+<script src="pako.js"></script>
+
 <html>
+    <style>
+        .rowproto {
+            visibility: hidden;
+        }
+    </style>
+
     <h2>Configuration</h2>
     
-    <div class="row">
+    <div class="rowproto">
         <label>Item</label><input class="item" type="text"></input>
         <label>Minimum</label><input class="min" type="text"></input>
         <label>Maximum</label><input class="max" type="text"></input>
@@ -20,55 +29,46 @@
     <button id="generate" type="button">Generate!</button>
 
     <h2>Output</h2>
-    <textarea id="output" rows="20" cols="80">
+    <textarea id="output" rows="16" cols="80" readonly>
         /silent-command
             local c = game.player.set_personal_logistic_slot
-            c( 45, {max = 5, min = 5, name = "locomotive"})
-            c( 53, {max = 4294967295, min = 1, name = "spidertron"})
-            c( 54, {max = 4294967295, min = 1, name = "spidertron-remote"})
-            c( 62, {max = 50, min = 50, name = "construction-robot"})
-            c( 87, {max = 20, min = 20, name = "cliff-explosives"})
-            c( 91, {max = 100, min = 100, name = "repair-pack"})
-            c( 131, {max = 0, min = 0, name = "pistol"})
-            c( 132, {max = 1, min = 1, name = "submachine-gun"})
-            c( 133, {max = 1, min = 1, name = "rocket-launcher"})
-            c( 143, {max = 200, min = 200, name = "uranium-rounds-magazine"})
-            c( 153, {max = 10, min = 10, name = "atomic-bomb"})
-            c( 171, {max = 4294967295, min = 0, name = "light-armor"})
-            c( 172, {max = 4294967295, min = 0, name = "heavy-armor"})
-            c( 173, {max = 4294967295, min = 0, name = "modular-armor"})
-            c( 174, {max = 4294967295, min = 0, name = "power-armor"})
-            c( 175, {max = 4294967295, min = 0, name = "power-armor-mk2"})
-            c( 181, {max = 4294967295, min = 0, name = "solar-panel-equipment"})
-            c( 182, {max = 4294967295, min = 0, name = "fusion-reactor-equipment"})
-            c( 183, {max = 4294967295, min = 0, name = "battery-equipment"})
-            c( 184, {max = 4294967295, min = 0, name = "battery-mk2-equipment"})
-            c( 185, {max = 4294967295, min = 0, name = "belt-immunity-equipment"})
-            c( 186, {max = 4294967295, min = 0, name = "exoskeleton-equipment"})
-            c( 187, {max = 4294967295, min = 0, name = "personal-roboport-equipment"})
-            c( 188, {max = 4294967295, min = 0, name = "personal-roboport-mk2-equipment"})
-            c( 189, {max = 4294967295, min = 0, name = "night-vision-equipment"})
-            c( 191, {max = 4294967295, min = 0, name = "energy-shield-equipment"})
-            c( 192, {max = 4294967295, min = 0, name = "energy-shield-mk2-equipment"})
-            c( 193, {max = 8, min = 8, name = "personal-laser-defense-equipment"})
-            c( 208, {max = 50, min = 50, name = "radar"})
-            c( 253, {max = 10, min = 10, name = "rocket-fuel"})
-    </textarea>    
+                c(45, {max=4294967295,min=0,name=personal-roboport-equipment})
+                c(46, {max=5,min=5,name=locomotive})
+                c(47, {max=4294967295,min=0,name=exoskeleton-equipment})
+    </textarea>
+
+    <h2>Import/Share</h2>
+    <textarea id="sharestring" rows="2" cols="80">
+MTIwLDE1NiwxNDEsMTQxLDE4NywxMCwxMjgsNDgsMTYsNCwyNTUsMjI5LDEwNiw1LDE3LDMxLDE5Niw5NSwxNywxMSwxNDksNDMsMTMwLDczLDU0LDE5OCw4Myw0LDI0MSwyMjMsMTQxLDc3LDE5MiwyMDYsMTEwLDEzOCwxNTMsMjIxLDI1NCwzNCw0NSwxMDgsMTY5LDM1LDIwNyw5NywxMzEsMjcsNzcsMzAsNDgsMTkzLDM1LDcyLDIwNiwyMzUsMTc0LDE4OSwxMDEsMzksMTQ4LDE0NSwyMTMsNDYsNTgsMTk3LDc1LDIyNywyNSwxNjksNDIsODUsMTY1LDE1NCwxODIsODQsNTMsMjIxLDg5LDIxOCw0OCwxNTIsOTcsMzMsMjUwLDIyNCwxNDgsMjEyLDQxLDI0OSwxNTIsMTI0LDk4LDkxLDIxNiwxNzYsMTkyLDI1MywyNTQsMjUsMzAsMjI2LDE3OSw1MywxMjY=
+    </textarea><br/>
+    <button id="import" type="button">Import!</button>
 
     <script>
-        $('#addbutton').click(function() {
-            rows = $('.row');
+        function addRow(item, min, max) {
+            rows = $('.rowproto');
             var row = rows.first();
             var newrow = row.clone();
-            delbutton = newrow.first($('.delbutton'))
+            row.removeClass('rowproto');
+            row.addClass('row');
+            row.find('.item').val(item);
+            row.find('.min').val(min);
+            row.find('.max').val(max);
+            delbutton = newrow.find('.delbutton')
             delbutton.off();
             delbutton.click(function() {
                 newrow.remove();
             });
             row.after(newrow);
+        };
+
+        $('#addbutton').click(function() {
+            addRow();
         });
 
         $('#generate').click(function() {
+
+            shareobj = [];
+
             output = $('#output');
             var i = 45;
             l1 = '/silent-command';
@@ -80,9 +80,34 @@
                 min = x.find('input.min').val();
                 max = x.find('input.max').val();
 
+                shareobj.push({item:item, min:min, max:max});
+
                 l = 'c(' + (i+45) + ', {max=' + max + ',min=' + min + ',name=' + item + '})\n';
                 output.append(l);
             });
+
+            json = JSON.stringify(shareobj);
+            data = pako.deflate(json);
+            encoded = btoa(data);
+
+            $('#sharestring').text(encoded);
+
+        });
+
+        $('#import').click(function() {
+            sharestr = $('#sharestring').text();
+            data = atob(sharestr);
+            splitdata = Uint8Array.from(data.split(','));
+            objs = pako.inflate(splitdata);
+            jsonstr = new TextDecoder().decode(objs)
+            shareobj = JSON.parse(jsonstr);
+
+            newrows = [];
+
+            for(var i in shareobj) {
+                x = shareobj[i]
+                addRow(x.item, x.min, x.max);
+            }
         });
 
     </script>
