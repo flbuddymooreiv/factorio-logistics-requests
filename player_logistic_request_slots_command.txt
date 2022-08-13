@@ -28,7 +28,7 @@ s( 34, {max = 150, min = 150, name = "substation"});
 s( 38, {max = 100, min = 100, name = "pipe"});
 s( 39, {max = 50, min = 50, name = "pipe-to-ground"});
 s( 40, {max = 50, min = 50, name = "pump"});
-s( 41, {max = 500, min = 900, name = "rail"});
+s( 41, {max = 500, min = 500, name = "rail"});
 s( 42, {max = 10, min = 10, name = "train-stop"});
 s( 43, {max = 50, min = 50, name = "rail-signal"});
 s( 44, {max = 50, min = 50, name = "rail-chain-signal"});
