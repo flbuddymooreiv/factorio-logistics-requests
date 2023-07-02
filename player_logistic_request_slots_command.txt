@@ -24,7 +24,7 @@ s( 27, {max = 50, min = 50, name = "stack-filter-inserter"});
 s( 31, {max = 50, min = 50, name = "small-electric-pole"});
 s( 32, {max = 50, min = 50, name = "medium-electric-pole"});
 s( 33, {max = 50, min = 50, name = "big-electric-pole"});
-s( 34, {max = 150, min = 50, name = "substation"});
+s( 34, {max = 50, min = 50, name = "substation"});
 s( 38, {max = 100, min = 50, name = "pipe"});
 s( 39, {max = 50, min = 50, name = "pipe-to-ground"});
 s( 40, {max = 50, min = 50, name = "pump"});
